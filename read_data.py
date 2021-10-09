@@ -1,9 +1,8 @@
 from pymodbus.client.sync import ModbusSerialClient as ModbusClient
 import json
 
-settings={}
-
 def read_settings():
+    settings={}
     f = open('settings.json',)
     data = json.load(f)
 
@@ -13,7 +12,9 @@ def read_settings():
         print("Couldn't read settings.")
     f.close()
 
-def run_sync_client():
+    return settings
+
+def run_sync_client(settings):
     client = ModbusClient(method=settings['mode'], port=settings['port'], timeout=1,
                           baudrate=settings['baudrate'])
     client.connect()
@@ -27,8 +28,8 @@ def run_sync_client():
 
 
 if __name__ == "__main__":
-    read_settings()
+    settings = read_settings()
     if settings:
-        run_sync_client()
+        run_sync_client(settings)
     else:
         print("Configurations error.")
