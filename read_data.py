@@ -8,7 +8,7 @@ def run_sync_client():
                           baudrate=9600)
     client.connect()
     for unit in units:
-        rr = client.read_holding_registers(12, 2, unit=unit)
+        rr = client.read_holding_registers(11, 2, unit=unit)
         print(unit)
         print(rr.registers)
     client.close()
