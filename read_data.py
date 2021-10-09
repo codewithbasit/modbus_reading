@@ -15,6 +15,9 @@ def read_settings():
     return settings
 
 def run_sync_client(settings):
+    data = []
+    device_data = {}
+    
     client = ModbusClient(method=settings['mode'], port=settings['port'], timeout=1,
                           baudrate=settings['baudrate'])
     client.connect()
@@ -22,8 +25,12 @@ def run_sync_client(settings):
         rr = client.read_holding_registers(device['register_offset'], 
                                             device['number_of_regs'], 
                                             unit=device['slave_id'])
-        print(device['slave_id'])
-        print(rr.registers)
+        device_data['Id'] = device['slave_id']
+        device_data['Temperature'] = (rr.registers[0]/100)
+        device_data['Humidity'] = (rr.registers[1]/100)
+        data.append(device_data)
+
+    print(data)
     client.close()
 
 
