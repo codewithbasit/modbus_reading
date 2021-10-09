@@ -1,0 +1,27 @@
+{
+    "port": "COM3",
+    "mode": "rtu",
+    "baudrate": 9600,
+    "devices":[
+        {
+            "slave_id":41,
+            "register_offset":11,
+            "number_of_regs": 2
+        },
+        {
+            "slave_id":42,
+            "register_offset":11,
+            "number_of_regs": 2
+        },
+        {
+            "slave_id":43,
+            "register_offset":11,
+            "number_of_regs": 2
+        },
+        {
+            "slave_id":44,
+            "register_offset":11,
+            "number_of_regs": 2
+        }
+    ]
+}
