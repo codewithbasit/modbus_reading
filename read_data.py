@@ -22,8 +22,7 @@ def run_sync_client(settings):
         rr = client.read_holding_registers(device['register_offset'], 
                                             device['number_of_regs'], 
                                             unit=device['slave_id'])
-        print(unit=device['slave_id'])
-        print(rr.registers)
+        print(device['slave_id']+' : '+rr.registers)
     client.close()
 
 
