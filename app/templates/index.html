@@ -4,30 +4,78 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
     <title>Sensors Data</title>
 </head>
 <body>
-    <h1>Sensors Data</h1>
-    <table>
-        <tr>
-            <th>SNo</th>
-            <th>Device ID</th>
-            <th>Description</th>
-            <th>Temperature</th>
-            <th>Humidity</th>
-            <th>Time</th>
-        </tr>
-
-    {% for record in records %}
-        <tr>
-            <td>{{record.id}}</td>
-            <td>{{record.dev_id}}</td>
-            <td>{{record.dev_desc}}</td>
-            <td>{{record.dev_temp}}</td>
-            <td>{{record.dev_hum}}</td>
-            <td>{{record.reading_time}}</td>
-        </tr>
-    {% endfor %}
-    </table>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="check" viewBox="0 0 16 16">
+          <title>Check</title>
+          <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+        </symbol>
+      </svg>
+      
+      <div class="container py-3">
+        <header>
+          <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom text-center">
+            <span class="fs-4">Sensors Data Dashboard</span>
+          </div>
+        </header>
+      
+        <main>
+          <div class="row row-cols-1 row-cols-md-12 mb-12 text-center">
+            <div class="col">
+              <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                  <h4 class="my-0 fw-normal">Latest Readings</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <th>Device ID</th>
+                            <th>Description</th>
+                            <th>Temperature
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-thermometer-half" viewBox="0 0 16 16">
+                                    <path d="M9.5 12.5a1.5 1.5 0 1 1-2-1.415V6.5a.5.5 0 0 1 1 0v4.585a1.5 1.5 0 0 1 1 1.415z"/>
+                                    <path d="M5.5 2.5a2.5 2.5 0 0 1 5 0v7.55a3.5 3.5 0 1 1-5 0V2.5zM8 1a1.5 1.5 0 0 0-1.5 1.5v7.987l-.167.15a2.5 2.5 0 1 0 3.333 0l-.166-.15V2.5A1.5 1.5 0 0 0 8 1z"/>
+                                  </svg>
+                            </th>
+                            <th>Humidity 
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-droplet-half" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M7.21.8C7.69.295 8 0 8 0c.109.363.234.708.371 1.038.812 1.946 2.073 3.35 3.197 4.6C12.878 7.096 14 8.345 14 10a6 6 0 0 1-12 0C2 6.668 5.58 2.517 7.21.8zm.413 1.021A31.25 31.25 0 0 0 5.794 3.99c-.726.95-1.436 2.008-1.96 3.07C3.304 8.133 3 9.138 3 10c0 0 2.5 1.5 5 .5s5-.5 5-.5c0-1.201-.796-2.157-2.181-3.7l-.03-.032C9.75 5.11 8.5 3.72 7.623 1.82z"/>
+                                    <path fill-rule="evenodd" d="M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448z"/>
+                                  </svg>
+                            </th>
+                            <th>Time
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="blue" class="bi bi-stopwatch" viewBox="0 0 16 16">
+                                    <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5V5.6z"/>
+                                    <path d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64a.715.715 0 0 1 .012-.013l.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354a.512.512 0 0 1-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5zM8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3z"/>
+                                  </svg>
+                            </th>
+                        </tr>
+                
+                    {% for record in records %}
+                        <tr>
+                            <td>{{record.dev_id}}</td>
+                            <td>{{record.dev_desc}}</td>
+                            <td>{{record.dev_temp}} &#x2103;</td>
+                            <td>{{record.dev_hum}} %</td>
+                            <td>{{record.reading_time}}</td>
+                        </tr>
+                    {% endfor %}
+                    </table>
+                
+                  <a type="button" class="w-100 btn btn-lg btn-outline-primary" href="/export_csv">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                  </svg> Export as CSV</a>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+    <script src="/static/js/bootstrap.min.js"></script>
 </body>
 </html>
