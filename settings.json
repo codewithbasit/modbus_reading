@@ -5,21 +5,25 @@
     "devices":[
         {
             "slave_id":41,
+            "slave_desc":"Outdoor Sensor",
             "register_offset":11,
             "number_of_regs": 2
         },
         {
             "slave_id":42,
+            "slave_desc":"Indoor Sensor",
             "register_offset":11,
             "number_of_regs": 2
         },
         {
             "slave_id":43,
+            "slave_desc":"Factory Sensor",
             "register_offset":11,
             "number_of_regs": 2
         },
         {
             "slave_id":44,
+            "slave_desc":"Home Sensor",
             "register_offset":11,
             "number_of_regs": 2
         }

@@ -1,4 +1,6 @@
 from pymodbus.client.sync import ModbusSerialClient as ModbusClient
+from app import database as db_helper
+from datetime import datetime
 import json
 import time
 
@@ -24,7 +26,7 @@ def read_registers(client, device_id, register_offset, num_of_regs):
     else:
         return None
 def run_sync_client(settings):
-    data = []
+    data = [ ]
     device_data = {}
     client = ModbusClient(method=settings['mode'], port=settings['port'], timeout=1,
                           baudrate=settings['baudrate'])
@@ -34,6 +36,7 @@ def run_sync_client(settings):
                                         device['register_offset'], 
                                         device['number_of_regs'])
         device_data['Id'] = device['slave_id']
+        device_data['Description'] = device['slave_desc']
         device_data['Temperature'] = (values[0]/10.0)
         device_data['Humidity'] = (values[1]/10.0)
         data.append(device_data)
@@ -41,7 +44,10 @@ def run_sync_client(settings):
 
     print(data)
     client.close()
-
+    reading_time = datetime.now()
+    for item in data:
+        record = db_helper.new_dev_data(item, reading_time)
+        db_helper.save_record(record)
 
 if __name__ == "__main__":
     settings = read_settings()
