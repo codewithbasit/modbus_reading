@@ -2,7 +2,6 @@ from sqlalchemy.util.langhelpers import counter
 from app import app
 from flask import json, render_template, redirect, url_for, jsonify, Response
 from app import database as db_helper
-from pandas.io.json import json_normalize
 
 def json_to_csv(json_data):
     csv = ''
