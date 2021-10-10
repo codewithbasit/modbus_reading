@@ -61,7 +61,7 @@
                             <td>{{record.dev_desc}}</td>
                             <td>{{record.dev_temp}} &#x2103;</td>
                             <td>{{record.dev_hum}} %</td>
-                            <td>{{record.reading_time}}</td>
+                            <td>{{record.reading_time.strftime("%m/%d/%Y, %H:%M:%S")}}</td>
                         </tr>
                     {% endfor %}
                     </table>
