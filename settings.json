@@ -2,6 +2,7 @@
     "port": "COM3",
     "mode": "rtu",
     "baudrate": 9600,
+    "frequency": 60,
     "devices":[
         {
             "slave_id":41,

@@ -55,6 +55,6 @@ if __name__ == "__main__":
     
         while True:
             run_sync_client(settings)
-            time.sleep(5)
+            time.sleep(settings['frequency'])
     else:
         print("Configurations error.")
